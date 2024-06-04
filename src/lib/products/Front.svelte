@@ -1,11 +1,12 @@
 <script>
   import { Button } from "flowbite-svelte";
   import { createEventDispatcher } from "svelte";
-  import ColorPicker from "../colorpicker/ColorPicker.svelte";
+  import ColorPicker from "./ColorPicker.svelte";
 
   const dispatch = createEventDispatcher();
 
   export let product = undefined;
+  let detailsCategory = JSON.parse(product.category.detailsCategory);
 
   let productColor = { r: 128, g: 128, b: 128 };
   let userColor = { r: 128, g: 128, b: 128 };
@@ -13,22 +14,16 @@
   function onColorSelected(event) {
     productColor = event.detail;
   }
-  const toConfigure = {
-    heightMin: 50,
-    heightMax: 2750,
-    widthMin: 50,
-    widthMax: 2000,
-    thickness: [18, 19, 22],
-    color: ["Czerwony", "Zielony", "Niebieski", "Czarny"],
-    price: 1,
-  };
 
-  const details = {
-    height: toConfigure.heightMin,
-    width: toConfigure.widthMin,
-    thickness: toConfigure.thickness[0],
-    color: toConfigure.color[0],
-  };
+  const details = {};
+
+  for (const [key, value] of Object.entries(detailsCategory)) {
+    if (value.form === "input") {
+      details[key] = detailsCategory[key][`min`];
+    } else if (value.form === "select") {
+      details[key] = detailsCategory[key]["options"][0];
+    }
+  }
 
   let price = 0;
   let amount = 1;
@@ -55,58 +50,31 @@
     }
   }
 
-  function handleInput(event) {
-    amount = event.target.value;
-    if (isNaN(amount)) {
-      amount = 0;
-    }
-    if (amount > 999) {
-      amount = 999;
-    }
-    if (amount < 1) {
-      amount = 1;
-      dispatch("change", { amount });
-    }
-
-    dispatch("change", { amount });
-  }
-
   function saveConfigurations(event) {
     event.preventDefault();
 
-    if (
-      details.height > toConfigure.heightMax ||
-      details.height < toConfigure.heightMin
-    ) {
-      error = {
-        msg:
-          "Wysokość musi mieścić się w przedziale " +
-          toConfigure.heightMax +
-          " > x > " +
-          toConfigure.heightMin,
-      };
-      return;
-    }
+    for (const [key, value] of Object.entries(detailsCategory)) {
+      if (value.form === "input") {
+        const minKey = `min`;
+        const maxKey = `max`;
 
-    if (
-      details.width > toConfigure.widthMax ||
-      details.width < toConfigure.widthMin
-    ) {
-      error = {
-        msg:
-          "Szerokość musi mieścić się w przedziale " +
-          toConfigure.widthMax +
-          " > x > " +
-          toConfigure.widthMin,
-      };
-      return;
-    }
-
-    if (toConfigure.thickness.indexOf(details.thickness)) {
-      error = {
-        msg: "Zła grubość",
-      };
-      return;
+        if (
+          details[key] >= detailsCategory[key]["max"] ||
+          details[key] <= detailsCategory[key]["min"]
+        ) {
+          error = {
+            msg: `${value.name} musi mieścić się w przedziale ${detailsCategory[key]["max"]} - ${detailsCategory[key]["max"]}`,
+          };
+          break;
+        }
+      } else if (value.form === "select") {
+        if (!detailsCategory[key].includes(details[key])) {
+          error = {
+            msg: `Zła wartość dla ${value.name}`,
+          };
+          break;
+        }
+      }
     }
 
     const newConfiguration = {
@@ -130,10 +98,6 @@
     }
   }
 
-  $: if (product.price) {
-    price = product.price;
-  }
-
   function closeModal() {
     error = undefined;
   }
@@ -142,170 +106,149 @@
     colorFind = undefined;
     console.log(productColor);
   }
+
+  $: if (product.price) {
+    price = product.price;
+  }
+
+  $: if (isNaN(amount)) {
+    amount = 0;
+  }
+  $: if (amount > 999) {
+    amount = 999;
+  }
+  $: if (amount < 1) {
+    amount = 1;
+    dispatch("change", { amount });
+  }
 </script>
 
-{product.category.detailsCategory}
-
 <div class="u-body u-xl-mode" data-lang="pl">
-
   <section>
     <div class="container u-sheet u-sheet-1">
       <div class="image">
         <img src="/SW32313_13242.png" alt="" />
       </div>
       <div class="form">
-
-      <h2 class="u-text u-text-default u-text-1">Sample Headline</h2>
-      <div
-        class="u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-form u-form-1"
-      >
-        <form
-          on:submit|preventDefault={saveConfigurations}
-          class=" u-form-spacing-10 u-form-vertical u-inner-form"
-          name="form"
-          style="padding: 10px;"
+        <h2 class="u-text u-text-default u-text-1">Sample Headline</h2>
+        <div
+          class="u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-form u-form-1"
         >
-          <div class="form-d">
-            {#each Object.entries(product.category.detailsCategory) as [key, value]}
-            {#if value.form === "input"}
-              <!-- Input -->
-              <label for={value.name}>{key.charAt(0).toUpperCase() + key.slice(1)}:</label>
-              <input 
-              class="u-input u-input-rectangle"
-             
-            
-               type="number" 
-              
-
-                name={value.name} 
-                min={value.min} 
-                max={value.max} 
-                bind:value={details[value.name]}
-              />
-            {:else if value.form === "select"}
-              <!-- Select -->
-              <label for={value.name}>{key.charAt(0).toUpperCase() + key.slice(1)}:</label>
-              <select name={value.name}
-              
-              class="u-input u-input-rectangle"
-              
-              bind:value={details[value.name]}
-              >
-                {#each value.options as option}
-                  <option value={option}>{option}</option>
-                {/each}
-              </select>
-            {/if}
-          {/each}
-
-
-
-            <!-- <label for="wysokosc" class="u-label">Wysokość [mm]:</label>
-
-            <input
-              class="u-input u-input-rectangle"
-              type="number"
-              id="wysokosc"
-              bind:value={details.height}
-              min={toConfigure.heightMin}
-              max={toConfigure.heightMax}
-            />
-          </div>
-
-          <div class="form-d">
-            <label for="szerokosc" class="u-label">Szerokość [mm]:</label>
-
-            <input
-              class="object-right"
-              type="number"
-              id="szerokosc"
-              bind:value={details.width}
-              min={toConfigure.widthMin}
-              max={toConfigure.widthMax}
-            />
-          </div>
-
-          <div class="form-d">
-            <label for="grubosc" class="u-label">Grubość [mm]:</label>
-
-            <select
-              class="u-input u-input-rectangle"
-              id="grubosc"
-              bind:value={details.thickness}
-            >
-              {#each toConfigure.thickness as g}
-                <option value={g}>{g}</option>
+          <form
+            on:submit|preventDefault={saveConfigurations}
+            class=" u-form-spacing-10 u-form-vertical u-inner-form"
+            name="form"
+            style="padding: 10px;"
+          >
+            <div class="form-d">
+              {#each Object.entries(detailsCategory) as [key, value]}
+                <div class="form-mod">
+                  {#if value.form === "input"}
+                    <!-- Input -->
+                    <label for={value.name}
+                      >{value.name.charAt(0).toUpperCase() +
+                        value.name.slice(1)}:</label
+                    >
+                    <input
+                      class="u-input u-input-rectangle"
+                      type="number"
+                      name={value.name}
+                      min={value.min}
+                      max={value.max}
+                      bind:value={details[value.name]}
+                    />
+                  {:else if value.form === "select"}
+                    <!-- Select -->
+                    <label for={value.name}
+                      >{value.name.charAt(0).toUpperCase() +
+                        value.name.slice(1)}:</label
+                    >
+                    <select
+                      name={value.name}
+                      class="u-input u-input-rectangle"
+                      bind:value={details[value.name]}
+                    >
+                      {#each value.options as option}
+                        <option value={option}>{option}</option>
+                      {/each}
+                    </select>
+                  {/if}
+                </div>
               {/each}
-            </select> -->
-          </div>
+            </div>
 
-          <div class="u-align-right u-form-group u-form-submit">
-            <Button on:click={colorFindFn} style="background:#73AD21;">
-              Wybierz kolor
-            </Button>
+            <div class="u-align-right u-form-group u-form-submit">
+              <Button on:click={colorFindFn} style="background:#73AD21;">
+                Wybierz kolor
+              </Button>
 
-            <Button
-              type="button"
-              class=""
-              style="background:#73AD21; s"
-              on:click={saveConfigurations}>Zapisz Konfigurację</Button
-            >
-          </div>
-          
-          <div>
-            <Button on:click={decreaseAmount} class="amount-button" style="background:#73AD21;">
-            -
-           </Button>
+              <Button
+                type="button"
+                class=""
+                style="background:#73AD21; s"
+                on:click={saveConfigurations}>Zapisz Konfigurację</Button
+              >
+            </div>
 
-           <input
-           class=""
-           type="number"
-           id="amount"
-           bind:value={amount}
-           min={1}
-           max={999}
-         />
+            <div>
+              <Button
+                on:click={decreaseAmount}
+                class="amount-button"
+                style="background:#73AD21;"
+              >
+                -
+              </Button>
 
-            <Button on:click={increaseAmount} class="amount-button" style="background:#73AD21;">
-            +
-            </Button>
+              <input
+                class=""
+                type="number"
+                id="amount"
+                bind:value={amount}
+                min={1}
+                max={999}
+              />
 
-          </div>
-
-        </form>
-
-
-      </div>
+              <Button
+                on:click={increaseAmount}
+                class="amount-button"
+                style="background:#73AD21;"
+              >
+                +
+              </Button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </section>
-  <!-- u-image u-image-default u-image-1 -->
+
   {#if error}
-  <div class="modal">
-    <div class="update-form">
-      <p>{error.msg}</p>
-      <button class="btn submit" on:click={closeModal}>OK</button>
+    <div class="modal">
+      <div class="update-form">
+        <p>{error.msg}</p>
+        <button class="btn submit" on:click={closeModal}>OK</button>
+      </div>
     </div>
-  </div>
-{/if}
+  {/if}
 
-{#if  colorFind}
-<div class="modal">
-  <div class="update-form">
-    <ColorPicker inputColor={productColor}  userColor={userColor} onSelectColor={productColor}/>
-      <button class="btn submit" on:click={closeColorFind} >OK</button>
-    <!-- <p>{error.msg}</p>
-    <button class="btn submit" on:click={closeColorFind}>OK</button> -->
-  </div>
+  {#if colorFind}
+    <div class="modal">
+      <div class="update-form">
+        <ColorPicker
+          inputColor={productColor}
+          {userColor}
+          onSelectColor={productColor}
+        />
+        <button class="btn submit" on:click={closeColorFind}>OK</button>
+        <p>{error.msg}</p>
+        <button class="btn submit" on:click={closeColorFind}>OK</button>
+      </div>
+    </div>
+  {/if}
 </div>
-{/if}
-
-</div>
-
-
 
 <style>
-.form-d   select,
+  .form-d select,
   input {
     display: inline-block;
     margin-top: 10px;
@@ -316,37 +259,35 @@
     justify-content: right;
 
     /* width: full; */
-  
-}
+  }
 
-@media (max-width: 768px) {
+  @media (max-width: 768px) {
     .amount-button {
-        display: none;
+      display: none;
     }
-}
+  }
 
-.input-container {
-  display: flex;
-  align-items: center;
-}
+  .input-container {
+    display: flex;
+    align-items: center;
+  }
 
-.input-container label {
+  .input-container label {
+    flex: 1;
+    text-align: left;
+    margin-right: 10px;
+  }
 
-  flex: 1;
-  text-align: left;
-  margin-right: 10px; 
-}
-
-.input-container input, select {
-  flex: 1;
-}
-
+  .input-container input,
+  select {
+    flex: 1;
+  }
 
   .amount-container {
     display: flex;
     align-items: center;
     gap: 10px;
-    z-index: 1; 
+    z-index: 1;
   }
   .update-form {
     border: 6px solid #73ad21;
@@ -438,8 +379,6 @@
     margin-top: 10px;
   }
 
-
-
   @media (max-width: 640px) {
     .container {
       flex-direction: column;
@@ -456,7 +395,7 @@
 
     .decrease-button,
     .increase-button {
-        display: none;
+      display: none;
     }
   }
 
@@ -482,7 +421,7 @@
 
   .form {
     flex: 1;
-    }
+  }
 
   @media (max-width: 991px) {
     .container {
