@@ -123,23 +123,16 @@
   }
 </script>
 
-<div class="u-body u-xl-mode" data-lang="pl">
+<div class="box">
   <section>
-    <div class="container u-sheet u-sheet-1">
-      <div class="image">
+    <div class="container">
+      <div class="product-image">
         <img src="/SW32313_13242.png" alt="" />
       </div>
       <div class="form">
-        <h2 class="u-text u-text-default u-text-1">Sample Headline</h2>
-        <div
-          class="u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-form u-form-1"
-        >
-          <form
-            on:submit|preventDefault={saveConfigurations}
-            class=" u-form-spacing-10 u-form-vertical u-inner-form"
-            name="form"
-            style="padding: 10px;"
-          >
+        <h2 class="">Sample Headline</h2>
+        <div class="">
+          <form on:submit|preventDefault={saveConfigurations} name="form">
             <div class="form-d">
               {#each Object.entries(detailsCategory) as [key, value]}
                 <div class="form-mod">
@@ -248,7 +241,7 @@
 </div>
 
 <style>
-  .form-d select,
+  /* .form-d select,
   input {
     display: inline-block;
     margin-top: 10px;
@@ -258,7 +251,7 @@
     align-items: right;
     justify-content: right;
 
-    /* width: full; */
+    width: full;
   }
 
   @media (max-width: 768px) {
@@ -298,26 +291,7 @@
     align-items: center;
   }
 
-  .modal {
-    display: flex;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    z-index: 100;
-  }
 
-  .modal > div {
-    padding: 20px;
-    background: white;
-    border: 1px solid #ccc;
-    z-index: 10;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
 
   .btn {
     color: white;
@@ -334,26 +308,10 @@
     background-color: #50b01c;
   }
 
-  .container {
-    padding: 50px;
-    margin: auto;
-    border-radius: 25px;
-    border: 6px solid #73ad21;
-    display: flex;
-    justify-content: center;
-    align-items: start;
-    gap: 20px;
-    width: 100%;
-    box-sizing: border-box;
-  }
 
-  .image-container {
-    flex: 1;
-  }
 
   .product-image {
-    width: 100%;
-    height: auto;
+    flex: 1/3;
   }
 
   .info-container {
@@ -428,4 +386,160 @@
       flex-direction: column;
     }
   }
+
+
+  .form-mod{
+    display: flex;
+    flex-direction: column;
+    padding: auto;
+  } */
+
+/* pierdolenie nowe */
+
+  /* .container {
+    padding: 5%;
+    margin: auto;
+    border-radius: 25px;
+    border: 6px solid #73ad21;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    gap: 20px;
+    width: 90%;
+    max-width: 1800px;
+    box-sizing: border-box;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  form {
+    flex: 1 30%;
+  }
+  .product-image {
+    
+    justify-content: center;
+    align-items: center;
+
+    flex: 2 30%;
+    max-width: 800px;
+  }
+
+
+
+  .product-image img{
+    max-height: 9vg;
+  }
+
+  @media (max-width: 991px) {
+    .container {
+      flex-direction: column;
+    }
+
+    .product-image,
+    form {
+      flex: 1 1 100%;
+    }
+
+    .product-image {
+      margin-bottom: 20px;
+    }
+  }
+
+  .u-input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+  }
+
+
+
+  .u-align-right {
+    text-align: right;
+  }
+*/
+
+
+  .form-mod {
+    margin-bottom: 15px;
+  }
+
+  .amount-button {
+    padding: 5px 10px;
+    margin: 0 5px;
+  }
+
+  .modal {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+  }
+
+  .modal > div {
+    padding: 20px;
+    background: white;
+    border: 1px solid #ccc;
+    z-index: 10;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  } 
+
+  .container input,
+  select {
+    display: flexbox;
+  }
+
+
+  .container {
+    border-radius: 25px;
+    border: 6px solid #73ad21;
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .box {
+        width: 100%;
+      }
+
+
+      .container img {
+      margin: 2vh;
+       max-height:80vh;
+       max-width: 60vh;
+      }
+
+      @media screen and (min-width:500px) {
+        .form{
+          width: 33.333%;
+          padding: 0 2em 0 2em;
+
+        }
+        .product-image{
+          width:66.666%;
+          padding: 0 2em 0 2em;
+          max-height: 90vh;
+
+        }
+      }
+      @media screen and (min-width:800px) {
+        .form{
+          width: 33.33%;
+        }
+        .product-image{
+          width:66.666%;
+        }
+        body{
+          padding: 0 2em 0 2em;
+        }
+      }
 </style>
