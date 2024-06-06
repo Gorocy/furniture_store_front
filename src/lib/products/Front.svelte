@@ -241,198 +241,37 @@
 </div>
 
 <style>
-  /* .form-d select,
-  input {
-    display: inline-block;
-    margin-top: 10px;
-    border: 3px solid #73ad21;
-    border-radius: 15px;
-    text-align: right;
-    align-items: right;
-    justify-content: right;
-
-    width: full;
-  }
-
-  @media (max-width: 768px) {
-    .amount-button {
-      display: none;
-    }
-  }
-
-  .input-container {
-    display: flex;
-    align-items: center;
-  }
-
-  .input-container label {
-    flex: 1;
-    text-align: left;
-    margin-right: 10px;
-  }
-
-  .input-container input,
-  select {
-    flex: 1;
-  }
-
-  .amount-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    z-index: 1;
-  }
-  .update-form {
-    border: 6px solid #73ad21;
-    border-radius: 10px;
-    flex: 60%;
-    margin: 4%;
-    justify-content: center;
-    align-items: center;
-  }
-
-
-
-  .btn {
-    color: white;
-    padding: 0.5rem 0;
-    margin-top: 0.5rem;
-    display: inline-block;
-    width: 100%;
-    border-radius: 0.25rem;
-    cursor: pointer;
-  }
-
-  .submit {
-    background: linear-gradient(to bottom, #50b01c 5%, #73ad21 100%);
-    background-color: #50b01c;
-  }
-
-
-
-  .product-image {
-    flex: 1/3;
-  }
-
-  .info-container {
-    display: flex;
-    flex-direction: column;
-    flex: 2;
-    gap: 20px;
-  }
-
-  .form-container {
-    border: 6px solid #73ad21;
-    padding: 20px;
-    border-radius: 25px;
-    display: block;
-  }
-
-  label {
-    margin-top: 10px;
-  }
-
-  button {
-    display: block;
-    margin-top: 10px;
-  }
-
-  @media (max-width: 640px) {
-    .container {
-      flex-direction: column;
-    }
-
-    .info-container,
-    .image-container {
-      width: 100%;
-    }
-
-    .form-container {
-      width: auto;
-    }
-
-    .decrease-button,
-    .increase-button {
-      display: none;
-    }
-  }
-
   .container {
+    border-radius: 25px;
+    border: 6px solid #73ad21;
+    margin: 0 auto;
+    padding: 3vh;
     display: flex;
     flex-wrap: wrap;
   }
 
-  .image {
-    flex: 1;
-    margin: auto;
-    justify-content: center;
-    align-items: center;
+  .product-image {
+    flex: 2;
+    min-width: 150px;
   }
 
-  .image img {
-    width: 80%;
-    height: auto;
-    margin: auto;
-    justify-content: center;
-    align-items: center;
+  .product-image img {
+    margin: 0 auto;
+    width: 60vh;
   }
 
   .form {
+    margin: 0 auto;
     flex: 1;
-  }
-
-  @media (max-width: 991px) {
-    .container {
-      flex-direction: column;
-    }
-  }
-
-
-  .form-mod{
     display: flex;
     flex-direction: column;
-    padding: auto;
-  } */
-
-/* pierdolenie nowe */
-
-  /* .container {
-    padding: 5%;
-    margin: auto;
-    border-radius: 25px;
-    border: 6px solid #73ad21;
-    display: flex;
-    justify-content: center;
-    align-items: start;
-    gap: 20px;
-    width: 90%;
-    max-width: 1800px;
-    box-sizing: border-box;
-  }
-
-  .container {
-    display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start;
   }
 
-  form {
-    flex: 1 30%;
-  }
-  .product-image {
-    
-    justify-content: center;
-    align-items: center;
-
-    flex: 2 30%;
-    max-width: 800px;
-  }
-
-
-
-  .product-image img{
-    max-height: 9vg;
+  .form input,
+  .form select {
+    width: 100%;
+    margin: 1vh 0;
   }
 
   @media (max-width: 991px) {
@@ -441,37 +280,11 @@
     }
 
     .product-image,
-    form {
-      flex: 1 1 100%;
-    }
-
-    .product-image {
-      margin-bottom: 20px;
+    .form {
+      min-width: 100%;
     }
   }
 
-  .u-input {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-  }
-
-
-
-  .u-align-right {
-    text-align: right;
-  }
-*/
-
-
-  .form-mod {
-    margin-bottom: 15px;
-  }
-
-  .amount-button {
-    padding: 5px 10px;
-    margin: 0 5px;
-  }
 
   .modal {
     display: flex;
@@ -494,52 +307,27 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   } 
 
-  .container input,
-  select {
-    display: flexbox;
+  .btn {
+    color: white;
+    padding: 0.5rem 0;
+    margin-top: 0.5rem;
+    display: inline-block;
+    width: 100%;
+    border-radius: 0.25rem;
+    cursor: pointer;
   }
 
+  .submit {
+    background: linear-gradient(to bottom, #50b01c 5%, #73ad21 100%);
+    background-color: #50b01c;
+  }
 
-  .container {
-    border-radius: 25px;
+  .update-form {
     border: 6px solid #73ad21;
-        display: flex;
-        flex-wrap: wrap;
-      }
-
-      .box {
-        width: 100%;
-      }
-
-
-      .container img {
-      margin: 2vh;
-       max-height:80vh;
-       max-width: 60vh;
-      }
-
-      @media screen and (min-width:500px) {
-        .form{
-          width: 33.333%;
-          padding: 0 2em 0 2em;
-
-        }
-        .product-image{
-          width:66.666%;
-          padding: 0 2em 0 2em;
-          max-height: 90vh;
-
-        }
-      }
-      @media screen and (min-width:800px) {
-        .form{
-          width: 33.33%;
-        }
-        .product-image{
-          width:66.666%;
-        }
-        body{
-          padding: 0 2em 0 2em;
-        }
-      }
+    border-radius: 10px;
+    flex: 60%;
+    margin: 4%;
+    justify-content: center;
+    align-items: center;
+  }
 </style>
