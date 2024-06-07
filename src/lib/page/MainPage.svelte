@@ -1,5 +1,7 @@
 <script>
   import { onMount } from 'svelte';
+  import './nicepage.css';
+  import './Strona-główna.css';
 </script>
 
 <svelte:head>
@@ -8,10 +10,6 @@
   <meta name="keywords" content="The perfect combination of interior design, architecture, New ideas to life, Our business consultants can help you adapt to today’s market dynamics, Our interior designing firm, Interior Design Ideas for Your Modern Home, About Us, Interior Design Ideas for Your Home, Contact Us">
   <meta name="description" content="">
   <title>Strona główna</title>
-  <!-- <link rel="stylesheet" href="nicepage.css" media="screen">
-  <link rel="stylesheet" href="Strona-główna.css" media="screen">
-  <script type="text/javascript" src="jquery.js" defer></script>
-  <script type="text/javascript" src="nicepage.js" defer></script> -->
   <meta name="generator" content="Nicepage 6.9.2, nicepage.com">
   <meta name="referrer" content="origin">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
@@ -55,9 +53,7 @@
 <section class="u-clearfix u-grey-10 u-section-1" id="carousel_8d06">
 <div class="u-shape u-shape-rectangle u-white u-shape-1" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="750"></div>
 <div class="u-expanded-width u-shape u-shape-rectangle u-white u-shape-2" data-animation-name="customAnimationIn" data-animation-duration="1500"></div>
-<!-- svelte-ignore a11y-missing-attribute -->
 <img class="u-image u-image-default u-image-1" data-image-width="1380" data-image-height="934" src="images/view-modern-entryway-with-interi.jpg" data-animation-name="flipIn" data-animation-duration="1750" data-animation-delay="500" data-animation-direction="X">
-<!-- svelte-ignore a11y-missing-attribute -->
 <img class="u-image u-image-2" src="images/view-modern-entryway-with-interi.jpg" data-image-width="740" data-image-height="1110" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500">
 <div class="u-align-left u-container-align-left u-container-style u-group u-white u-group-1" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="750">
   <div class="u-container-layout u-valign-middle u-container-layout-1">
@@ -354,76 +350,3 @@
 </div>
 </section>
 </div>
-<!-- <section class="u-clearfix u-white u-section-9" id="sec-db1a">
-<div class="u-opacity u-opacity-75 u-palette-5-light-2 u-shape u-shape-rectangle u-shape-1" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500"></div>
-<div class="u-grey-25 u-shape u-shape-rectangle u-shape-2" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="0"></div>
-<div class="data-layout-selected u-clearfix u-gutter-10 u-layout-wrap u-layout-wrap-1">
-  <div class="u-gutter-0 u-layout">
-    <div class="u-layout-row">
-      <div class="u-align-left u-container-align-left u-container-style u-layout-cell u-left-cell u-size-30-lg u-size-30-xl u-size-60-md u-size-60-sm u-size-60-xs u-layout-cell-1" data-animation-name="customAnimationIn" data-animation-duration="1750" data-animation-delay="500">
-        <div class="u-container-layout u-valign-middle u-container-layout-1">
-          <h2 class="u-align-left u-text u-text-1">Contact Us</h2>
-          <p class="u-align-left u-text u-text-2">You are always welcome to contact us. Our Customer Service is available Mon–Fri 9:00 a.m.–8:00 p.m. and Sat–Sun 10:00 a.m.–6:00 p.m. (GMT +3). We look forward to hearing from you!</p>
-          <div class="u-expanded-width u-form u-form-1">
-            <form action="https://forms.nicepagesrv.com/v2/form/process" class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" source="email" name="form" style="padding: 10px;">
-              <div class="u-form-group u-form-name u-label-none">
-                <label for="name-3434" class="u-label" wfd-invisible="true">Name</label>
-                <input type="text" placeholder="Enter your Name" id="name-3434" name="name" class="u-border-none u-grey-10 u-input u-input-rectangle" required="">
-              </div>
-              <div class="u-form-email u-form-group u-label-none">
-                <label for="email-3434" class="u-label" wfd-invisible="true">Email</label>
-                <input type="email" placeholder="Enter a valid email address" id="email-3434" name="email" class="u-border-none u-grey-10 u-input u-input-rectangle" required="">
-              </div>
-              <div class="u-form-group u-form-message u-label-none">
-                <label for="message-3434" class="u-label" wfd-invisible="true">Message</label>
-                <textarea placeholder="Enter your message" rows="4" cols="50" id="message-3434" name="message" class="u-border-none u-grey-10 u-input u-input-rectangle" required=""></textarea>
-              </div>
-              <div class="u-align-left u-form-group u-form-submit u-label-none">
-                <a href="#" class="u-black u-border-none u-btn u-btn-submit u-button-style u-btn-1">Submit</a>
-                <input type="submit" value="submit" class="u-form-control-hidden" wfd-invisible="true">
-              </div>
-              <div class="u-form-send-message u-form-send-success" wfd-invisible="true"> Thank you! Your message has been sent. </div>
-              <div class="u-form-send-error u-form-send-message" wfd-invisible="true"> Unable to send your message. Please fix errors then try again. </div>
-              <input type="hidden" value="" name="recaptchaResponse" wfd-invisible="true">
-              <input type="hidden" name="formServices" value="633c4c54-48de-c937-f30c-87cbebfc9508">
-            </form>
-          </div>
-        </div>
-      </div>
-      <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-30-lg u-size-30-xl u-size-60-md u-size-60-sm u-size-60-xs u-layout-cell-2" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500">
-        <div class="u-container-layout">
-          <div class="u-align-left u-expanded u-grey-10 u-map">
-            <div class="embed-responsive">
-              <iframe class="embed-responsive-item" src="//maps.google.com/maps?output=embed&amp;q=Manhattan&amp;t=m" data-map="JTdCJTIyYWRkcmVzcyUyMiUzQSUyMk1hbmhhdHRhbiUyMiUyQyUyMnpvb20lMjIlM0FudWxsJTJDJTIydHlwZUlkJTIyJTNBJTIycm9hZCUyMiUyQyUyMmxhbmclMjIlM0FudWxsJTJDJTIyYXBpS2V5JTIyJTNBbnVsbCUyQyUyMm1hcmtlcnMlMjIlM0ElNUIlNUQlN0Q="></iframe>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</section> -->
-
-
-
-
-
-<!-- <svelte:head>
-  <title>Strona główna</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="​The perfect combination of interior design, architecture, New ideas to life, ​Our business consultants can help you adapt to today’s market dynamics, ​Our interior designing firm, Interior Design Ideas for Your Modern Home, ​About Us, Interior Design Ideas for Your Home, Contact Us">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta charset="utf-8">
-  <meta name="theme-color" content="#59bec1">
-  <meta property="og:title" content="Strona główna">
-  <meta property="og:type" content="website">
-  <link rel="stylesheet" href="nicepage.css" media="screen">
-  <link rel="stylesheet" href="Strona-główna.css" media="screen">
-</svelte:head> -->
-
-<style>
-  @import 'https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i';
-  @import 'nicepage.css';
-  @import 'Strona-główna.css';
-
-</style>

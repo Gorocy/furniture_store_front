@@ -123,19 +123,19 @@
   }
 </script>
 
-<div class="box">
-  <section>
-    <div class="container">
-      <div class="product-image">
-        <img src="/SW32313_13242.png" alt="" />
+<div class="box">  <!-- przypisana klasa box, która nie istnieje -->
+  <section> <!-- niepotrzebny element, proszę usunąć -->
+    <div class="container"> <!-- ten div jest w section, które go tylko wrapuje i nic więcej -->
+      <div class="product-image"> 
+        <img src="/SW32313_13242.png" alt="" /> <!-- nigdy w życiu nie wpisuj tak ścieżki do zdjęcia, w pliku co Ci wysłałem masz wyjaśnione jak to robić -->
       </div>
       <div class="form">
-        <h2 class="">Sample Headline</h2>
-        <div class="">
+        <h2 class="">Sample Headline</h2> <!-- tutaj masz atrybut class pusty po co? Usunąć, nie robić śmieci -->
+        <div class=""> <!-- tutaj też masz atrybut class pusty po co? Usunąć, nie robić śmieci -->
           <form on:submit|preventDefault={saveConfigurations} name="form">
-            <div class="form-d">
+            <div class="form-d"> <!-- tutaj masz klasę, która nie istnieje, znowu śmietnik w kodzie -->
               {#each Object.entries(detailsCategory) as [key, value]}
-                <div class="form-mod">
+                <div class="form-mod"> <!-- to samo co wyżej -->
                   {#if value.form === "input"}
                     <!-- Input -->
                     <label for={value.name}
@@ -149,7 +149,7 @@
                       min={value.min}
                       max={value.max}
                       bind:value={details[value.name]}
-                    />
+                    /> <!-- tutaj masz klasę, która nie istnieje, znowu śmietnik w kodzie -->
                   {:else if value.form === "select"}
                     <!-- Select -->
                     <label for={value.name}
@@ -160,7 +160,7 @@
                       name={value.name}
                       class="u-input u-input-rectangle"
                       bind:value={details[value.name]}
-                    >
+                    > <!-- tutaj masz klasę, która nie istnieje, znowu śmietnik w kodzie -->
                       {#each value.options as option}
                         <option value={option}>{option}</option>
                       {/each}
@@ -182,7 +182,9 @@
                 on:click={saveConfigurations}>Zapisz Konfigurację</Button
               >
             </div>
-
+            <!-- raz używasz komponentu Button a później bazowego inputa z html,
+                zainstalowałeś te komponenty żeby ich używać to dlaczego nie użyjesz 
+                komponentu input z Flowbite? -->
             <div>
               <Button
                 on:click={decreaseAmount}
@@ -241,7 +243,7 @@
 </div>
 
 <style>
-  .container {
+  .container { 
     border-radius: 25px;
     border: 6px solid #73ad21;
     margin: 0 auto;
@@ -252,16 +254,23 @@
 
   .product-image {
     flex: 2;
-    min-width: 150px;
+    min-width: 150px; /* tutaj zadeklaruj stałą szerokość i też wysokość */
   }
 
   .product-image img {
     margin: 0 auto;
-    width: 60vh;
+    width: 60vh; /* nigdy nie zmieniaj zdjęciu ani szerokości ani wysokości,
+                    ponieważ przeskalowujesz zdjęcie i nie każde zdjęcie będzie tych samych rozmiarów.
+                    Dla małych zdjęć powiększysz je i będzie wyglądać tragiocznie.
+                    zrób tutaj max-width: 60vh; przez co zdjęcie mniejsze będą wyświetlane w swoim rozmiarze, a duże zdjęcia jak przekroczą 60vh to będą przeskalowane na szerokość 60vh.
+                    I deklarowanie rozmiaru 60vh to zły pomysł. 60vh to 60% wysokości okna przeglądarki. 
+                    Dla monitora 3440x1024 to będzie 512px szerokości a dla monitora 2550x1600 będzie to 900px szerokości. Lepiej zadklaruj stałą szerokości i zobacz dla innych urządzeń o różnej wielkości jak to wygląda i po prostu w media query zadklaruj np. max-width: 12rem;
+                    */
+                    /* dodałbym też tutaj max-height: 10rem; jaki to rozmiar to już sobie sam zobaczysz */
   }
 
   .form {
-    margin: 0 auto;
+    margin: 0 auto; /* to auto niepotrzebne, zamiast tego użyj flexboksowej propertki do wyśrodkowania */
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -300,7 +309,7 @@
   }
 
   .modal > div {
-    padding: 20px;
+    padding: 20px; /* tutaj używasz pikseli, a niżej rem */
     background: white;
     border: 1px solid #ccc;
     z-index: 10;
@@ -310,7 +319,7 @@
   .btn {
     color: white;
     padding: 0.5rem 0;
-    margin-top: 0.5rem;
+    margin-top: 0.5rem; /* tutaj używasz remow, co jest dobre, wyjaśnienie dostaniesz w pliku */
     display: inline-block;
     width: 100%;
     border-radius: 0.25rem;
@@ -327,7 +336,7 @@
     border-radius: 10px;
     flex: 60%;
     margin: 4%;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* używasz flexbox'owych propertek a ten element nie jest flex */
+    align-items: center; /* używasz flexbox'owych propertek a ten element nie jest flex */
   }
 </style>
